@@ -1,0 +1,352 @@
+const questions = [
+    {
+        "id": "01",
+        "question": "No Windows 10, o atalho de teclado utilizado para alternar entre as janelas abertas é:",
+        "options": ["Alt + Tab", "Ctrl + Esc", "Win + L", "Alt + F4"],
+        "correct": 0,
+        "explanation": "O Alt + Tab é o comando universal do Windows para alternância entre janelas."
+    },
+    {
+        "id": "02",
+        "question": "No terminal Linux, qual comando é utilizado para mudar de diretório?",
+        "options": ["mv", "cd", "ls", "mkdir"],
+        "correct": 1,
+        "explanation": "'cd' significa 'change directory' (mudar diretório)."
+    },
+    {
+        "id": "03",
+        "question": "No Windows, para excluir um arquivo permanentemente, sem enviá-lo para a lixeira, usa-se:",
+        "options": ["Delete", "Ctrl + Delete", "Shift + Delete", "Alt + Delete"],
+        "correct": 2,
+        "explanation": "Shift + Delete ignora a lixeira e apaga o arquivo do índice do disco."
+    },
+    {
+        "id": "04",
+        "question": "No Linux, o comando 'pwd' serve para:",
+        "options": ["Alterar a senha", "Exibir o caminho do diretório atual", "Listar arquivos", "Reiniciar o sistema"],
+        "correct": 1,
+        "explanation": "'pwd' significa 'print working directory'."
+    },
+    {
+        "id": "05",
+        "question": "O 'Explorador de Arquivos' do Windows pode ser aberto pelo atalho:",
+        "options": ["Win + E", "Win + X", "Win + R", "Win + D"],
+        "correct": 0,
+        "explanation": "Win + E abre o Explorer (E de Explorer)."
+    },
+    {
+        "id": "06",
+        "question": "No terminal do Linux, o comando utilizado para remover um arquivo comum é:",
+        "options": ["rm", "rmdir", "delete", "erase"],
+        "correct": 0,
+        "explanation": "'rm' (remove) apaga arquivos; 'rmdir' apaga apenas pastas vazias."
+    },
+    {
+        "id": "07",
+        "question": "No Windows, para alternar entre aplicativos através de uma lista visual, utiliza-se:",
+        "options": ["Alt + Tab", "Ctrl + Esc", "Win + D", "Alt + F4"],
+        "correct": 0,
+        "explanation": "O Alt + Tab permite a navegação visual entre as janelas ativas."
+    },
+    {
+        "id": "08",
+        "question": "No Linux, o diretório raiz do sistema é representado pelo símbolo:",
+        "options": ["~", "/", "\\", "#"],
+        "correct": 1,
+        "explanation": "A barra inclinada para a direita (/) representa o topo da hierarquia Linux."
+    },
+    {
+        "id": "09",
+        "question": "No Windows 10, o atalho utilizado para abrir as 'Configurações' do sistema é:",
+        "options": ["Win + I", "Win + S", "Win + C", "Win + U"],
+        "correct": 0,
+        "explanation": "Win + I abre a interface de Configurações."
+    },
+    {
+        "id": "10",
+        "question": "Qual comando do Linux exibe o conteúdo de um arquivo no terminal?",
+        "options": ["show", "open", "cat", "view"],
+        "correct": 2,
+        "explanation": "'cat' (concatenate) despeja o conteúdo do arquivo na tela."
+    },
+    {
+        "id": "11",
+        "question": "No LibreOffice Writer, o atalho para alinhamento 'Justificado' é:",
+        "options": ["Ctrl + J", "Ctrl + Q", "Ctrl + B", "Ctrl + G"],
+        "correct": 0,
+        "explanation": "Ctrl + J é o padrão para Justificar no Writer."
+    },
+    {
+        "id": "12",
+        "question": "No Microsoft Excel, a função para procurar valor na primeira coluna é:",
+        "options": ["SE", "SOMASE", "PROCV", "CONT.VALORES"],
+        "correct": 2,
+        "explanation": "PROCV (Procura Vertical) busca dados em colunas."
+    },
+    {
+        "id": "13",
+        "question": "No LibreOffice Calc, para somar de A1 até A10, a sintaxe correta é:",
+        "options": ["=SOMA(A1;A10)", "=SOMA(A1:A10)", "=ADICIONAR(A1 a A10)", "=SUM(A1-A10)"],
+        "correct": 1,
+        "explanation": "Os dois pontos (:) indicam o intervalo 'até'."
+    },
+    {
+        "id": "14",
+        "question": "No Microsoft Word, o recurso para enviar cartas para vários destinatários é:",
+        "options": ["Macro", "Mala Direta", "Referência Cruzada", "Revisão"],
+        "correct": 1,
+        "explanation": "A Mala Direta automatiza documentos em massa."
+    },
+    {
+        "id": "15",
+        "question": "O atalho padrão para 'Salvar' no LibreOffice Writer é:",
+        "options": ["Ctrl + B", "Ctrl + S", "Ctrl + G", "Ctrl + A"],
+        "correct": 1,
+        "explanation": "No LibreOffice usa-se 'S' de Save. No Word é 'B'."
+    },
+    {
+        "id": "16",
+        "question": "No Microsoft Excel, qual caractere fixa uma célula (referência absoluta)?",
+        "options": ["#", "&", "$", "%"],
+        "correct": 2,
+        "explanation": "O cifrão ($) trava a linha ou coluna na fórmula."
+    },
+    {
+        "id": "17",
+        "question": "No LibreOffice Writer, para inserir 'Quebra de Página', utiliza-se:",
+        "options": ["Shift + Enter", "Alt + Enter", "Ctrl + Enter", "Ctrl + Shift + Enter"],
+        "correct": 2,
+        "explanation": "Ctrl + Enter força o texto para a página seguinte."
+    },
+    {
+        "id": "18",
+        "question": "No Calc, a extensão de arquivo padrão é:",
+        "options": [".xlsx", ".ods", ".odt", ".csv"],
+        "correct": 1,
+        "explanation": ".ods significa OpenDocument Spreadsheet."
+    },
+    {
+        "id": "19",
+        "question": "No Word, qual atalho aplica 'Negrito'?",
+        "options": ["Ctrl + N", "Ctrl + B", "Ctrl + G", "Ctrl + S"],
+        "correct": 0,
+        "explanation": "No Word em português, N é de Negrito."
+    },
+    {
+        "id": "20",
+        "question": "No LibreOffice Calc, qual função retorna a média aritmética?",
+        "options": ["MEDIA()", "MED()", "AVERAGE()", "ARITMETICA()"],
+        "correct": 0,
+        "explanation": "A função chama-se MEDIA() com acento."
+    },
+    {
+        "id": "21",
+        "question": "No Writer, o comando para 'Centralizar' um texto é:",
+        "options": ["Ctrl + E", "Ctrl + C", "Ctrl + M", "Ctrl + L"],
+        "correct": 0,
+        "explanation": "Centralizar no Writer é Ctrl + E."
+    },
+    {
+        "id": "22",
+        "question": "No Excel, para concatenar (juntar) textos, utiliza-se:",
+        "options": ["+", "&", "|", "*"],
+        "correct": 1,
+        "explanation": "O 'e comercial' (&) une cadeias de texto."
+    },
+    {
+        "id": "23",
+        "question": "No Microsoft Word, o recurso 'Pincel de Formatação' serve para:",
+        "options": ["Mudar cor da página", "Copiar formatação", "Desenhar formas", "Apagar texto"],
+        "correct": 1,
+        "explanation": "Ele copia o estilo de um texto para outro."
+    },
+    {
+        "id": "24",
+        "question": "No LibreOffice Writer, o menu para exportar como PDF é:",
+        "options": ["Editar", "Ficheiro", "Inserir", "Ferramentas"],
+        "correct": 1,
+        "explanation": "A gestão de arquivos fica no menu Ficheiro."
+    },
+    {
+        "id": "25",
+        "question": "No Microsoft PowerPoint, qual tecla inicia a apresentação do começo?",
+        "options": ["F1", "F5", "F11", "F12"],
+        "correct": 1,
+        "explanation": "F5 inicia do primeiro slide."
+    },
+    {
+        "id": "26",
+        "question": "No LibreOffice Impress, a extensão padrão é:",
+        "options": [".ppt", ".odp", ".pps", ".odt"],
+        "correct": 1,
+        "explanation": ".odp significa OpenDocument Presentation."
+    },
+    {
+        "id": "27",
+        "question": "No Excel, a função '=CONT.VALORES(A1:A10)' serve para:",
+        "options": ["Somar valores", "Contar células com conteúdo", "Contar números", "Maior valor"],
+        "correct": 1,
+        "explanation": "Ela conta qualquer célula que não esteja vazia."
+    },
+    {
+        "id": "28",
+        "question": "No Word, 'Localizar e Substituir' é acessado por:",
+        "options": ["Ctrl + L", "Ctrl + H", "Ctrl + F", "Ctrl + S"],
+        "correct": 1,
+        "explanation": "Ctrl + H abre a caixa de substituição."
+    },
+    {
+        "id": "29",
+        "question": "No LibreOffice Calc, qual símbolo indica o início de uma fórmula?",
+        "options": ["#", "@", "=", "!"],
+        "correct": 2,
+        "explanation": "Fórmulas sempre começam com o sinal de igual."
+    },
+    {
+        "id": "30",
+        "question": "No Writer, para verificar ortografia e gramática, usa-se:",
+        "options": ["F1", "F7", "F10", "F12"],
+        "correct": 1,
+        "explanation": "F7 é o atalho universal para revisão ortográfica."
+    },
+    {
+        "id": "31",
+        "question": "O protocolo responsável por atribuir endereços IP automáticos é:",
+        "options": ["DNS", "DHCP", "FTP", "SMTP"],
+        "correct": 1,
+        "explanation": "DHCP configura IPs automaticamente na rede."
+    },
+    {
+        "id": "32",
+        "question": "No Google Chrome, para acessar o histórico, utiliza-se:",
+        "options": ["Ctrl + J", "Ctrl + H", "Ctrl + T", "Ctrl + N"],
+        "correct": 1,
+        "explanation": "Ctrl + H (History)."
+    },
+    {
+        "id": "33",
+        "question": "Qual atalho abre uma 'Janela Anônima' no Chrome?",
+        "options": ["Ctrl + Shift + P", "Ctrl + Shift + N", "Alt + N", "Ctrl + Alt + A"],
+        "correct": 1,
+        "explanation": "No Chrome é 'N' de New Incognito."
+    },
+    {
+        "id": "34",
+        "question": "A rede que interliga parceiros externos à organização é:",
+        "options": ["Intranet", "Extranet", "Ethernet", "Deep Web"],
+        "correct": 1,
+        "explanation": "A Extranet permite acesso externo controlado."
+    },
+    {
+        "id": "35",
+        "question": "O protocolo utilizado para enviar correio eletrônico é:",
+        "options": ["POP3", "IMAP", "SMTP", "HTTP"],
+        "correct": 2,
+        "explanation": "SMTP é para envio (Saída)."
+    },
+    {
+        "id": "36",
+        "question": "No navegador Firefox, o atalho para recarregar limpando o cache é:",
+        "options": ["F5", "Ctrl + F5", "Alt + R", "Ctrl + R"],
+        "correct": 1,
+        "explanation": "Ctrl + F5 força a atualização total da página."
+    },
+    {
+        "id": "37",
+        "question": "O endereço único de um recurso na rede é chamado de:",
+        "options": ["IP", "URL", "MAC", "DNS"],
+        "correct": 1,
+        "explanation": "URL é o endereço completo (ex: http://...)."
+    },
+    {
+        "id": "38",
+        "question": "Qual protocolo garante a criptografia em sites?",
+        "options": ["HTTP", "HTTPS", "FTP", "SNMP"],
+        "correct": 1,
+        "explanation": "O HTTPS usa SSL/TLS para segurança."
+    },
+    {
+        "id": "39",
+        "question": "No Chrome, o atalho Ctrl + D serve para:",
+        "options": ["Deletar histórico", "Adicionar aos favoritos", "Fechar navegador", "Abrir downloads"],
+        "correct": 1,
+        "explanation": "Ctrl + D salva a página nos Favoritos."
+    },
+    {
+        "id": "40",
+        "question": "O serviço que traduz nomes de domínios em IPs é:",
+        "options": ["DHCP", "DNS", "WINS", "GATEWAY"],
+        "correct": 1,
+        "explanation": "O DNS resolve nomes em endereços numéricos."
+    },
+    {
+        "id": "41",
+        "question": "O malware que sequestra arquivos e pede resgate é o:",
+        "options": ["Worm", "Trojan", "Ransomware", "Spyware"],
+        "correct": 2,
+        "explanation": "Ransomware criptografa dados para extorsão."
+    },
+    {
+        "id": "42",
+        "question": "O mecanismo que filtra o tráfego de rede é o:",
+        "options": ["Antivírus", "Firewall", "Proxy", "Switch"],
+        "correct": 1,
+        "explanation": "Firewall é a barreira de proteção de rede."
+    },
+    {
+        "id": "43",
+        "question": "O ataque que sobrecarrega um site até ele cair é o:",
+        "options": ["Phishing", "DDoS", "Spam", "Brute Force"],
+        "correct": 1,
+        "explanation": "DDoS sobrecarrega os recursos do servidor."
+    },
+    {
+        "id": "44",
+        "question": "Fazer uma cópia de segurança dos dados chama-se:",
+        "options": ["Restore", "Backup", "Upload", "Download"],
+        "correct": 1,
+        "explanation": "Backup é a cópia de segurança."
+    },
+    {
+        "id": "45",
+        "question": "Um software que monitora o teclado para roubar senhas é:",
+        "options": ["Screenlogger", "Keylogger", "Adware", "Rootkit"],
+        "correct": 1,
+        "explanation": "Keylogger registra as teclas digitadas."
+    },
+    {
+        "id": "46",
+        "question": "Qual malware se propaga automaticamente pelas redes?",
+        "options": ["Vírus", "Worm", "Trojan", "Spyware"],
+        "correct": 1,
+        "explanation": "Worms se autorreplicam sem precisar de hospedeiro."
+    },
+    {
+        "id": "47",
+        "question": "Enganar pessoas via e-mail falso para obter dados é:",
+        "options": ["Phishing", "Spoofing", "Sniffing", "Defacement"],
+        "correct": 0,
+        "explanation": "Phishing é a pescaria digital de dados."
+    },
+    {
+        "id": "48",
+        "question": "A Assinatura Digital garante autenticidade, integridade e:",
+        "options": ["Sigilo", "Não-repúdio", "Backup", "Antivírus"],
+        "correct": 1,
+        "explanation": "Não-repúdio garante que o autor não negue a assinatura."
+    },
+    {
+        "id": "49",
+        "question": "Arquivos que sites salvam para 'lembrar' do usuário são:",
+        "options": ["Malwares", "Cookies", "Caches", "Plugins"],
+        "correct": 1,
+        "explanation": "Cookies armazenam dados de sessão e preferências."
+    },
+    {
+        "id": "50",
+        "question": "O backup que copia apenas alterações desde o último backup completo é:",
+        "options": ["Diferencial", "Incremental", "Espelhado", "Seletivo"],
+        "correct": 1,
+        "explanation": "O Backup Incremental salva o que mudou desde a última cópia."
+    }
+];

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simulado Final - UFRJ 2026</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="main-wrapper">
+        <div id="top-bar">
+            <div id="timer">Tempo: 00:10:00</div>
+            <div id="score-board">
+                Acertos: <span id="hits">0</span> | Erros: <span id="misses">0</span>
+            </div>
+        </div>
+
+        <header>
+            <h1>Simulado de Informática: UFRJ 2026</h1>
+            <p>Banca: Selecon | 50 Questões</p>
+        </header>
+        
+        <div id="quiz-container"></div>
+
+        <div id="final-result-card" class="hidden">
+            <h2>📊 Apuração Final</h2>
+            <div class="stats-grid">
+                <div class="stat-item">🚀 Precisão: <span id="final-percent">0%</span></div>
+                <div class="stat-item">✅ Acertos: <span id="final-hits">0</span></div>
+                <div class="stat-item">❌ Erros: <span id="final-misses">0</span></div>
+            </div>
+            <p id="encouragement-msg"></p>
+        </div>
+
+        <div class="footer-controls">
+            <button onclick="location.reload()" class="btn-footer">Reiniciar Simulado</button>
+            <button onclick="window.close()" class="btn-footer">Sair</button>
+        </div>
+    </div>
+
+    <script src="questions.json"></script>
+    <script src="script.js"></script>
+</body>
+</html>

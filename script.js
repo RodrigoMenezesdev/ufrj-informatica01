@@ -19,11 +19,17 @@ function startTimer() {
         let minutes = Math.floor(timeLeft / 60);
         let seconds = timeLeft % 60;
         timerElement.innerText = `Tempo: ${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
-        if (timeLeft <= 0) { clearInterval(countdown); finalizeQuiz(); } else { timeLeft--; }
+        if (timeLeft <= 0) { 
+            clearInterval(countdown); 
+            finalizeQuiz(); 
+        } else { 
+            timeLeft--; 
+        }
     }, 1000);
 }
 
 function loadQuiz() {
+    // Embaralha as questões e pega as 50
     const questionsShuffled = shuffleArray([...questions]).slice(0, totalQuestions);
     const letras = ['A', 'B', 'C', 'D'];
 
@@ -31,22 +37,31 @@ function loadQuiz() {
         const card = document.createElement('div');
         card.className = 'question-card';
         const num = String(qIndex + 1).padStart(2, '0');
+
+        // Embaralha as opções desta questão específica
         let opts = q.options.map((text, index) => ({ text, originalIndex: index }));
         shuffleArray(opts);
 
+        // Prepara o texto para o leitor de voz (Pergunta + Opções)
+        let textoLeitura = `Questão ${num}: ${q.question}. `;
+        
         let optionsHtml = '';
         opts.forEach((opt, oIndex) => {
+            const letra = letras[oIndex];
+            textoLeitura += `Opção ${letra}: ${opt.text}. `; // Alimenta o texto do leitor
+            
             optionsHtml += `
                 <button class="option-btn" data-idx="${opt.originalIndex}" onclick="checkAnswer(${qIndex}, ${opt.originalIndex}, this, ${q.correct})">
                     <span class="error-label">ERRO ✘</span>
                     <div style="display:flex; align-items:center;">
-                        <span class="option-letter">${letras[oIndex]})</span> 
+                        <span class="option-letter">${letra})</span> 
                         <span>${opt.text}</span>
                     </div>
                 </button>`;
         });
 
-        card.innerHTML = `<button class="btn-speaker" onclick="lerQuestao('${q.question.replace(/'/g, "\\'")}')">🔊</button>
+        card.innerHTML = `
+            <button class="btn-speaker" onclick="lerTextoCompleto('${textoLeitura.replace(/'/g, "\\'")}')">🔊</button>
             <div class="question-text">Questão ${num}: ${q.question}</div>
             <div class="options-container" id="container-${qIndex}">${optionsHtml}</div>
             <div class="feedback-box" id="feedback-${qIndex}"><strong>Explicação:</strong> ${q.explanation}</div>`;
@@ -55,8 +70,20 @@ function loadQuiz() {
     startTimer();
 }
 
+// Função de leitura atualizada para ler tudo
+function lerTextoCompleto(texto) {
+    window.speechSynthesis.cancel(); // Para qualquer leitura em andamento
+    const utterance = new SpeechSynthesisUtterance(texto);
+    utterance.lang = 'pt-BR';
+    utterance.rate = 1.1; // Velocidade levemente aumentada para não ficar cansativo
+    window.speechSynthesis.speak(utterance);
+}
+
 function checkAnswer(qIndex, selectedIndex, element, correctIndex) {
     if (element.classList.contains('disabled')) return;
+    
+    window.speechSynthesis.cancel(); // Para a leitura se o usuário responder
+    
     const container = document.getElementById(`container-${qIndex}`);
     const buttons = container.querySelectorAll('.option-btn');
     buttons.forEach(btn => btn.classList.add('disabled'));
@@ -66,7 +93,11 @@ function checkAnswer(qIndex, selectedIndex, element, correctIndex) {
         hits++;
     } else {
         element.classList.add('wrong');
-        buttons.forEach(btn => { if (parseInt(btn.getAttribute('data-idx')) === correctIndex) btn.classList.add('correct-revealed'); });
+        buttons.forEach(btn => { 
+            if (parseInt(btn.getAttribute('data-idx')) === correctIndex) {
+                btn.classList.add('correct-revealed');
+            }
+        });
         document.getElementById(`feedback-${qIndex}`).classList.add('visible');
         misses++;
     }
@@ -93,7 +124,5 @@ function finalizeQuiz() {
     else if (percent >= 70) msg.innerText = "🚀 BOM TRABALHO! Continue revisando os erros para chegar nos 90%.";
     else msg.innerText = "📚 CONTINUE ESTUDANDO! A constância é o segredo do sucesso.";
 }
-
-function lerQuestao(texto) { window.speechSynthesis.cancel(); const u = new SpeechSynthesisUtterance(texto); u.lang = 'pt-BR'; window.speechSynthesis.speak(u); }
 
 document.addEventListener('DOMContentLoaded', loadQuiz);
